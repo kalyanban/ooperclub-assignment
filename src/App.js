@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+import ChatInput from './components/ChatInputs';
+import ChatMessage from './components/ChatMessage';
+import Header from "./components/Header"
+
+import "./App.css"
+
+const user_list = ["Alan", "Bob", "Carol", "Dean", "Elin"];
+
+const App = () => {
+  const [messages, setMessages] = useState([]);
+
+  const sendMessage = (text) => {
+    const randomUser = user_list[Math.floor(Math.random() * user_list.length)];
+    const newMessage = {
+      id: messages.length + 1,
+      user: randomUser,
+      text: text,
+      likes: 0
+    };
+    setMessages([...messages, newMessage]);
+  };
+
+  const likeMessage = (id) => {
+    const updatedMessages = messages.map(message =>
+      message.id === id ? { ...message, likes: message.likes + 1 } : message
+    );
+    setMessages(updatedMessages);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header />
+      <div className="chat-thread">
+        {messages.map(message => (
+          <ChatMessage key={message.id} message={message} likeMessage={likeMessage} />
+        ))}
+      </div>
+      <ChatInput sendMessage={sendMessage} />
     </div>
   );
-}
+};
 
 export default App;

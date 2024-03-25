@@ -1,0 +1,25 @@
+.message {
+    margin-top: 6px;
+    margin-bottom: 6px;
+    width: 75%;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 8px;
+    background-color: rgb(107, 194, 165);
+}
+.messages {
+    font-size: 16px;
+    font-weight: 600;
+}
+.like-button {
+    background-color: rgb(221, 213, 230);
+    color: rgb(36, 40, 43);
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    height: 35px;
+    width: 120px;
+}
